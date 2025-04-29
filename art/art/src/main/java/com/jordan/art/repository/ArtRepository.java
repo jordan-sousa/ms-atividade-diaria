@@ -1,4 +1,9 @@
 package com.jordan.art.repository;
 
-public interface ArtRepository {
+import com.jordan.art.model.Art;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface ArtRepository extends JpaRepository<Art, UUID> {
 }
