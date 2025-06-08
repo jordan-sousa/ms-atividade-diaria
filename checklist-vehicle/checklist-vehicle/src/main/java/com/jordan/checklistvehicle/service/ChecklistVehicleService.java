@@ -15,4 +15,6 @@ public interface ChecklistVehicleService {
     ChecklistVehicleResponseDTO getChecklistById(UUID id);
 
     void deleteChecklist(UUID id);
+
+    List<ChecklistVehicleResponseDTO> getChecklistsByUserId(UUID userId);
 }

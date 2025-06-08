@@ -53,7 +53,7 @@ public class ArtServiceImpl implements ArtService{
     @Override
     public ArtDTO getArtById(UUID id) {
         Art art = artRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Art not found with id: " + id));
+                .orElseThrow(() -> new RuntimeException("Art não encontrada com id: " + id));
 
         return new ArtDTO(
                 art.getId(),
@@ -65,9 +65,30 @@ public class ArtServiceImpl implements ArtService{
     }
 
     @Override
+    public ArtDTO updateArt(UUID id, ArtDTO artDTO) {
+        Art existing = artRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Arte não encontrada com id " + id));
+
+        existing.setTaskLocation(artDTO.taskLocation());
+        existing.setExecutorName(artDTO.executorName());
+        existing.setUserId(artDTO.userId());
+
+        Art updated = artRepository.save(existing);
+        return artMapper.toDTO(updated);
+    }
+
+    @Override
+    public List<ArtDTO> getArtsByUserId(UUID userId) {
+        return artRepository.findByUserId(userId)
+                .stream()
+                .map(artMapper::toDTO)
+                .toList();
+    }
+
+    @Override
     public void deleteArt(UUID id) {
         if (!artRepository.existsById(id)) {
-            throw new RuntimeException("Art not found with id: " + id);
+            throw new RuntimeException("Art não encontrada com id: " + id);
         }
         artRepository.deleteById(id);
     }

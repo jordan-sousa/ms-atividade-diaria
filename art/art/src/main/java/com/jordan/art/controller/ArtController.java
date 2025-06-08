@@ -37,4 +37,15 @@ public class ArtController {
     public void deleteArt(@PathVariable UUID id) {
         artService.deleteArt(id);
     }
+
+    @PutMapping("/{id}")
+    public ArtDTO updateArt(@PathVariable UUID id, @RequestBody @Valid ArtDTO dto) {
+        return artService.updateArt(id, dto);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<ArtDTO> getArtsByUserId(@PathVariable UUID userId) {
+        return artService.getArtsByUserId(userId);
+    }
+
 }

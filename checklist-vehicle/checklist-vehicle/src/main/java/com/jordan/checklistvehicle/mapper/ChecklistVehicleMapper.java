@@ -10,6 +10,7 @@ public class ChecklistVehicleMapper {
 
     public ChecklistVehicle toEntity(ChecklistVehicleRequestDTO dto) {
         return ChecklistVehicle.builder()
+                .userId(dto.userId())
                 .vehiclePlate(dto.vehiclePlate())
                 .vehicleModel(dto.vehicleModel())
                 .checklistDate(dto.checklistDate())
@@ -27,6 +28,7 @@ public class ChecklistVehicleMapper {
     public ChecklistVehicleResponseDTO toResponse(ChecklistVehicle entity){
         return new ChecklistVehicleResponseDTO(
                 entity.getId(),
+                entity.getUserId(),
                 entity.getVehiclePlate(),
                 entity.getVehicleModel(),
                 entity.getChecklistDate(),

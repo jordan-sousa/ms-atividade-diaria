@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public record ArtDTO(
         UUID id,
+        UUID userId,
         String taskLocation,
         String executorName,
         String employeeId,

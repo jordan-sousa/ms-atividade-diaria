@@ -34,6 +34,11 @@ public class ChecklistVehicleController {
         return service.getChecklistById(id);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<ChecklistVehicleResponseDTO> findByUserId(@PathVariable UUID userId) {
+        return service.getChecklistsByUserId(userId);
+    }
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable UUID id) {
         service.deleteChecklist(id);

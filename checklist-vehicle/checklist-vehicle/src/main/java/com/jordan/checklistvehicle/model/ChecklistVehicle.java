@@ -19,6 +19,9 @@ public class ChecklistVehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+
     private String vehiclePlate;
     private String vehicleModel;
     private LocalDate checklistDate;

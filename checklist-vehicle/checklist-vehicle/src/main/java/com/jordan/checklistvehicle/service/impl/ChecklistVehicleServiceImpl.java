@@ -49,4 +49,13 @@ public class ChecklistVehicleServiceImpl implements ChecklistVehicleService {
         }
         repository.deleteById(id);
     }
+
+    @Override
+    public List<ChecklistVehicleResponseDTO> getChecklistsByUserId(UUID userId) {
+        return repository.findByUserId(userId)
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+    }
+
 }

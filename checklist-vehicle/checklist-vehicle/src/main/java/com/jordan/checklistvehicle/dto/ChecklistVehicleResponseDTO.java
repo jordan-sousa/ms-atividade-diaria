@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public record ChecklistVehicleResponseDTO(
         UUID id,
+        UUID userId,
         String vehiclePlate,
         String vehicleModel,
         LocalDate checklistDate,
