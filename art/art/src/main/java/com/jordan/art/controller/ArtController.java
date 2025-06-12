@@ -2,6 +2,7 @@ package com.jordan.art.controller;
 
 import com.jordan.art.dto.ArtDTO;
 import com.jordan.art.service.ArtService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

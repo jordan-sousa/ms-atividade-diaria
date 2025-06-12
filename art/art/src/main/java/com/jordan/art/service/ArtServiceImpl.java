@@ -67,7 +67,7 @@ public class ArtServiceImpl implements ArtService{
     @Override
     public ArtDTO updateArt(UUID id, ArtDTO artDTO) {
         Art existing = artRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Arte não encontrada com id " + id));
+                .orElseThrow(() -> new RuntimeException("Arte não encontrada com id " + id));
 
         existing.setTaskLocation(artDTO.taskLocation());
         existing.setExecutorName(artDTO.executorName());
