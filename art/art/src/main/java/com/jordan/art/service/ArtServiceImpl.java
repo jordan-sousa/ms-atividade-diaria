@@ -29,6 +29,7 @@ public class ArtServiceImpl implements ArtService{
 
         return new ArtDTO(
                 saveArt.getId(),
+                saveArt.getUserId(),
                 saveArt.getTaskLocation(),
                 saveArt.getExecutorName(),
                 saveArt.getEmployeeId(),
@@ -42,6 +43,7 @@ public class ArtServiceImpl implements ArtService{
                 .stream()
                 .map(art -> new ArtDTO(
                         art.getId(),
+                        art.getUserId(),
                         art.getTaskLocation(),
                         art.getExecutorName(),
                         art.getEmployeeId(),
@@ -57,6 +59,7 @@ public class ArtServiceImpl implements ArtService{
 
         return new ArtDTO(
                 art.getId(),
+                art.getUserId(),
                 art.getTaskLocation(),
                 art.getExecutorName(),
                 art.getEmployeeId(),
@@ -67,23 +70,30 @@ public class ArtServiceImpl implements ArtService{
     @Override
     public ArtDTO updateArt(UUID id, ArtDTO artDTO) {
         Art existing = artRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Arte não encontrada com id " + id));
+                .orElseThrow(() -> new RuntimeException("Art não encontrada com id " + id));
 
         existing.setTaskLocation(artDTO.taskLocation());
         existing.setExecutorName(artDTO.executorName());
         existing.setUserId(artDTO.userId());
 
         Art updated = artRepository.save(existing);
-        return artMapper.toDTO(updated);
+        return new ArtDTO(
+                updated.getId(),
+                updated.getUserId(),
+                updated.getTaskLocation(),
+                updated.getExecutorName(),
+                updated.getEmployeeId(),
+                updated.getTaskDate()
+        );
     }
 
-    @Override
-    public List<ArtDTO> getArtsByUserId(UUID userId) {
-        return artRepository.findByUserId(userId)
-                .stream()
-                .map(artMapper::toDTO)
-                .toList();
-    }
+//    @Override
+//    public List<ArtDTO> getArtsByUserId(UUID userId) {
+//        return artRepository.findByUserId(userId)
+//                .stream()
+//                .map(artMapper::toDTO)
+//                .toList();
+//    }
 
     @Override
     public void deleteArt(UUID id) {

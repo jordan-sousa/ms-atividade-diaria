@@ -44,9 +44,9 @@ public class ArtController {
         return artService.updateArt(id, dto);
     }
 
-    @GetMapping("/user/{userId}")
-    public List<ArtDTO> getArtsByUserId(@PathVariable UUID userId) {
-        return artService.getArtsByUserId(userId);
-    }
+//    @GetMapping("/user/{userId}")
+//    public List<ArtDTO> getArtsByUserId(@PathVariable UUID userId) {
+//        return artService.getArtsByUserId(userId);
+//    }
 
 }

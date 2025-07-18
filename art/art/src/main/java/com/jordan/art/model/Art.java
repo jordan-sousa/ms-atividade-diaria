@@ -19,7 +19,7 @@ public class Art {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id", nullable = true)
     private UUID userId;
 
     @Column(name = "task_location", nullable = false)

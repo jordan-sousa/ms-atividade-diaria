@@ -15,7 +15,7 @@ public interface ArtService {
 
     ArtDTO updateArt(UUID id, ArtDTO artDTO);
 
-    List<ArtDTO> getArtsByUserId(UUID userId);
+//    List<ArtDTO> getArtsByUserId(UUID userId);
 
     void deleteArt(UUID id);
 }
